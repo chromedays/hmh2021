@@ -1,0 +1,11 @@
+/.clangd
+/.cache
+/bin
+/tmp
+/compile_commands.json
+/fbuild.*.fdb
+/build
+/out
+/.vs
+imgui.ini
+__pycache__

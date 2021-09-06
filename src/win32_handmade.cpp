@@ -51,7 +51,6 @@ int CALLBACK WinMain(HINSTANCE Instance, HINSTANCE PrevInstance,
   WNDCLASS WindowClass = {};
 
   // TODO(casey): Check if HREDRAW/VREDRAW/OWNDC still matter
-  WindowClass.style = CS_OWNDC | CS_HREDRAW | CS_VREDRAW;
   WindowClass.lpfnWndProc = MainWindowCallback;
   WindowClass.hInstance = Instance;
   // WindowClass.hIcon
@@ -65,10 +64,10 @@ int CALLBACK WinMain(HINSTANCE Instance, HINSTANCE PrevInstance,
     if (WindowHandle) {
       MSG Message;
       for (;;) {
-        BOOL MessageResult = GetMessage(&Message, 0, 0, 0);
+        BOOL MessageResult = GetMessageA(&Message, 0, 0, 0);
         if (MessageResult > 0) {
           TranslateMessage(&Message);
-          DispatchMessage(&Message);
+          DispatchMessageA(&Message);
         } else {
           break;
         }

@@ -32,6 +32,9 @@ internal void Win32ResizeDIBSection(int Width, int Height) {
   BitmapInfo.bmiHeader.biBitCount = 32;
   BitmapInfo.bmiHeader.biCompression = BI_RGB;
 
+  // TODO(casey): Based on ssylvan's suggestion, maybe we can just allocate
+  // this ourselves?
+
   BitmapHandle = CreateDIBSection(BitmapDeviceContext, &BitmapInfo,
                                   DIB_RGB_COLORS, &BitmapMemory, 0, 0);
 }

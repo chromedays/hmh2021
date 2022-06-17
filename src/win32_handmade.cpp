@@ -23,7 +23,7 @@ global_variable int BitmapWidth;
 global_variable int BitmapHeight;
 global_variable int BytesPerPixel = 4;
 
-internal void RenderWeirdGradient(int XOffset, int YOffset) {
+internal void RenderWeirdGradient(int BlueOffset, int GreenOffset) {
   int Width = BitmapWidth;
   int Height = BitmapHeight;
 
@@ -32,8 +32,8 @@ internal void RenderWeirdGradient(int XOffset, int YOffset) {
   for (int Y = 0; Y < Height; ++Y) {
     uint32 *Pixel = (uint32 *)Row;
     for (int X = 0; X < Width; ++X) {
-      uint8 Blue = (uint8)(X + XOffset);
-      uint8 Green = (uint8)(Y + YOffset);
+      uint8 Blue = (uint8)(X + BlueOffset);
+      uint8 Green = (uint8)(Y + GreenOffset);
       *Pixel++ = ((Green << 8) | Blue);
     }
     Row += Pitch;
@@ -164,6 +164,7 @@ int CALLBACK WinMain(HINSTANCE Instance, HINSTANCE PrevInstance,
                           WindowHeight);
         ReleaseDC(Window, DeviceContext);
         ++XOffset;
+        YOffset += 2;
       }
     } else {
       // TODO(casey): Logging
